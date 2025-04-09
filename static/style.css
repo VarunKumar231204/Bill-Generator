@@ -1,0 +1,108 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    width: 500px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    max-width: 800px;
+    margin: auto;
+    overflow: auto; /* Allows scrolling if content overflows */
+}
+
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+label {
+    font-weight: 500;
+    display: block;
+    text-align: left;
+    margin: 12px 0 5px;
+}
+
+input, button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+input {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.8); /* Brighter white */
+    opacity: 1; /* Ensure full opacity */
+}
+
+
+input:focus {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid white;
+}
+
+button {
+    background: #04C35C;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background: #03A34A;
+    transform: translateY(-2px);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 550px) {
+    .container {
+        width: 100%;
+    }
+}
