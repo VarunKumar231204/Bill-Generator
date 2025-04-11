@@ -143,3 +143,8 @@ def generate_invoice(firm_name, billed_to, shipped_to, billing_address, shipping
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+if __name__ == "__main__":
+    from os import environ
+    app.run(host="0.0.0.0", port=int(environ.get("PORT", 8000)))
+
