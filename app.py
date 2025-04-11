@@ -64,7 +64,7 @@ def generate_invoice(firm_name, billed_to, shipped_to, billing_address, shipping
     c.drawString(50, start_y, firm_name)
     c.setFont("Helvetica", 10)
     c.drawString(50, start_y - 15, "ABC nagar , district, state")
-    c.drawString(50, start_y - 30, "GSTIN: NAJEFAW48SAJDF | Mobile: 3215485464")
+    c.drawString(50, start_y - 30, "GSTIN: [GSTIN] | Mobile: [Phone number]")
     
     # **Billing & Shipping Details**
     start_y -= 50
