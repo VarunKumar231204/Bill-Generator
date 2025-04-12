@@ -3,6 +3,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from reportlab.lib import colors
 import io
+import os
 
 app = Flask(__name__)
 
@@ -145,6 +146,6 @@ if __name__ == "__main__":
     app.run(debug=True)
 
 if __name__ == "__main__":
-    from os import environ
-    app.run(host="0.0.0.0", port=int(environ.get("PORT", 8000)))
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
 
