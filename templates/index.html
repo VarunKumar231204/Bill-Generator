@@ -1,61 +1,68 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice Generator | Business Billing</title>
+    <title>Invoice-Generator</title>
     <link rel="stylesheet" href="/static/style.css">
+    
 </head>
 <body>
-
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="logo">InvoiceGen</div>
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/invoice">Generate Bill</a></li>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-        <div class="auth-buttons">
-            <a href="#"><button class="btn-login">Login</button></a>
-            <a href="#"><button class="btn-signup">Sign Up</button></a>
-        </div>
-    </nav>
-
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Fast & Professional <span>Billing Solution</span></h1>
-            <p>Create tax invoices instantly for your business — safe, accurate and downloadable as PDF.</p>
-            <a href="/invoice"><button class="btn-generate">Generate Bill</button></a>
-        </div>
-    </section>
-
-    <!-- SERVICES SECTION -->
-    <section class="features">
-        <h2>Why Businesses Trust Us</h2>
-        <div class="feature-container">
-            <div class="feature-box">
-                <h3>GST Ready</h3>
-                <p>Automatically calculates CGST/SGST to simplify tax billing.</p>
+    <div class="container">
+        <h1>[Name Of Firm]</h1>
+        <h2>Generate Your Invoice</h2>
+        <form method="POST">
+            <div class="form-group">
+                <label>Firm Name:</label>
+                <input type="text" name="firm_name" required>
+                <label for="billed_to">Billed To:</label>
+                <input type="text" id="billed_to" name="billed_to" placeholder="Enter Client's Name" required>
             </div>
-            <div class="feature-box">
-                <h3>Instant PDF</h3>
-                <p>Download invoice PDF within seconds with professional layout.</p>
-            </div>
-            <div class="feature-box">
-                <h3>Unlimited Usage</h3>
-                <p>No limitation — generate unlimited invoices anytime.</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- FOOTER -->
-    <footer>
-    <p>© 2025 <span>InvoiceGen</span> — Professional Business Billing Software</p>
-    <p>Made with ❤️ for small & medium businesses across India</p>
-</footer>
+            <div class="form-group">
+                <label for="shipped_to">Shipped To:</label>
+                <input type="text" id="shipped_to" name="shipped_to" placeholder="Enter Shipping Name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="billing_address">Billing Address:</label>
+                <input type="text" id="billing_address" name="billing_address" placeholder="Billing Address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="shipping_address">Shipping Address:</label>
+                <input type="text" id="shipping_address" name="shipping_address" placeholder="Shipping Address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="invoice_no">Invoice No:</label>
+                <input type="text" id="invoice_no" name="invoice_no" placeholder="Enter Invoice Number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="invoice_date">Invoice Date:</label>
+                <input type="date" id="invoice_date" name="invoice_date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="item_name">Item Name:</label>
+                <input type="text" id="item_name" name="item_name" placeholder="Enter Item Name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="qty">Quantity:</label>
+                <input type="number" id="qty" name="qty" placeholder="Enter Quantity" required>
+            </div>
+
+            <div class="form-group">
+                <label for="rate">Rate (₹):</label>
+                <input type="number" id="rate" name="rate" step="0.01" placeholder="Enter Rate per Item" required>
+            </div>
+
+            <button type="submit">Generate Invoice</button>
+        </form>
+    </div>
 
 </body>
 </html>
