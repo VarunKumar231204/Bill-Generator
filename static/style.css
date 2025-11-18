@@ -48,7 +48,7 @@ body {
 .container h1 {
     background: linear-gradient(to right, darkblue, darkblue);
     -webkit-background-clip: text;
-    /* -webkit-text-fill-color: transparent; */
+    -webkit-text-fill-color: transparent;
 }
 
 /* Preserve homepage heading visibility */
