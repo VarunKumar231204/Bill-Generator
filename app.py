@@ -7,8 +7,15 @@ import os
 
 app = Flask(__name__)
 
-@app.route("/", methods=["GET", "POST"])
-def index():
+# ---------------- HOME PAGE ----------------
+@app.route("/")
+def home():
+    return render_template("home.html")
+
+
+# ---------------- FORM PAGE + PDF GENERATION ----------------
+@app.route("/generate", methods=["GET", "POST"])
+def generate():
     if request.method == "POST":
         # Fetch form data
         firm_name = request.form.get("firm_name")
@@ -41,24 +48,23 @@ def index():
             mimetype="application/pdf"
         )
 
-    return render_template("index.html")
+    return render_template("index.html")  # form page stays same
 
 
+# ---------------- PDF FORMAT (NO CHANGE DONE) ----------------
 def generate_invoice(firm_name, billed_to, shipped_to, billing_address, shipping_address,
                      invoice_no, invoice_date, item_name, qty, rate, amount, cgst, sgst, total_amount):
     buffer = io.BytesIO()
     c = canvas.Canvas(buffer, pagesize=A4)
     width, height = A4
-    start_y = height - 50  # Start position for elements
+    start_y = height - 50
 
-    # **Header Bar**
     c.setFillColor(colors.darkblue)
     c.rect(40, start_y, 520, 35, fill=True, stroke=False)
     c.setFillColor(colors.white)
     c.setFont("Helvetica-Bold", 16)
     c.drawString(230, start_y + 10, "TAX INVOICE")
     
-    # **Firm Details**
     start_y -= 50
     c.setFillColor(colors.black)
     c.setFont("Helvetica-Bold", 12)
@@ -67,31 +73,23 @@ def generate_invoice(firm_name, billed_to, shipped_to, billing_address, shipping
     c.drawString(50, start_y - 15, "ABC nagar , district, state")
     c.drawString(50, start_y - 30, "GSTIN: [ABCDE123E] | Mobile: [465-7980]")
     
-    # **Billing & Shipping Details**
     start_y -= 50
     c.setFont("Helvetica-Bold", 12)
     c.drawString(50, start_y, "Billed To:")
     c.drawString(300, start_y, "Shipped To:")
     c.setFont("Helvetica", 10)
-    # Split long addresses into multiple lines
     billed_lines = billed_to.split("\n") + billing_address.split("\n")
     shipped_lines = shipped_to.split("\n") + shipping_address.split("\n")
-    # Print Billed To address properly spaced
     for i, line in enumerate(billed_lines):
         c.drawString(50, start_y - 15 - (i * 15), line)
-    # Print Shipped To address properly spaced
     for i, line in enumerate(shipped_lines):
         c.drawString(300, start_y - 15 - (i * 15), line)
-    # Adjust `start_y` to prevent overlap below
     start_y -= max(len(billed_lines), len(shipped_lines)) * 15 + 20
 
-
-    # **Invoice Info**
     start_y -= 50
     c.drawString(50, start_y, f"Invoice No: {invoice_no}")
     c.drawString(300, start_y, f"Invoice Date: {invoice_date}")
 
-    # **Table Header**
     start_y -= 40
     c.setFillColor(colors.lightgrey)
     c.rect(40, start_y, 520, 25, fill=True, stroke=True)
@@ -103,7 +101,6 @@ def generate_invoice(firm_name, billed_to, shipped_to, billing_address, shipping
     c.drawString(370, start_y + 8, "Rate")
     c.drawString(460, start_y + 8, "Amount")
 
-    # **Table Content**
     start_y -= 25
     c.setFont("Helvetica", 10)
     c.rect(40, start_y, 520, 25, stroke=True, fill=False)
@@ -113,7 +110,6 @@ def generate_invoice(firm_name, billed_to, shipped_to, billing_address, shipping
     c.drawString(370, start_y + 8, f"{rate:.2f}")
     c.drawString(460, start_y + 8, f"{amount:.2f}")
 
-    # **Taxes**
     start_y -= 30
     c.drawString(370, start_y, "CGST (9%):")
     c.drawString(460, start_y, f"{cgst:.2f}")
@@ -121,7 +117,6 @@ def generate_invoice(firm_name, billed_to, shipped_to, billing_address, shipping
     c.drawString(370, start_y, "SGST (9%):")
     c.drawString(460, start_y, f"{sgst:.2f}")
 
-    # **Total Amount**
     start_y -= 30
     c.setFillColor(colors.lightgrey)
     c.rect(370, start_y, 190, 25, fill=True, stroke=True)
@@ -130,21 +125,17 @@ def generate_invoice(firm_name, billed_to, shipped_to, billing_address, shipping
     c.drawString(380, start_y + 8, "Grand Total:")
     c.drawString(460, start_y + 8, f"₹{total_amount:.2f}")
 
-    # **Authorized Signature**
     start_y -= 60
     c.setFont("Helvetica-Bold", 12)
     c.drawString(400, start_y, "Authorized Signatory")
     c.line(400, start_y - 5, 520, start_y - 5)
 
-    # **Save PDF**
     c.save()
     buffer.seek(0)
     return buffer
 
 
+# ---------------- RUN SERVER ----------------
 if __name__ == "__main__":
-    app.run(debug=True)
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))  # <- default to 10000 if not set
-    app.run(host="0.0.0.0", port=port)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port, debug=True)

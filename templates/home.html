@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Generator | Home</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins, sans-serif;
+}
+
+/* Smooth Background */
+body {
+    background: linear-gradient(135deg, #e8ebf5, #f4f7ff);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* NAVBAR — STICKY */
+.navbar {
+    width: 100%;
+    background: #0d1c6e;
+    color: white;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(6px);
+}
+.navbar .logo {
+    display: flex;
+    align-items: center;
+}
+.navbar img {
+    height: 48px;
+    margin-right: 12px;
+}
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: .25s;
+}
+.navbar ul li a:hover {
+    color: #ffd54a;
+    transform: scale(1.06);
+}
+
+/* HERO SECTION */
+.hero {
+    margin-top: 115px;
+    text-align: center;
+    padding: 120px 20px;
+}
+.hero h1 {
+    font-size: 52px;
+    color: #0d1c6e !important;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+.hero p {
+    font-size: 21px;
+    color: #3a3a3a;
+    margin-top: 14px;
+    margin-bottom: 38px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.45;
+}
+.hero button {
+    background: linear-gradient(135deg, #1a237e, #5564e9);
+    color: white;
+    padding: 15px 40px;
+    border-radius: 10px;
+    border: none;
+    font-size: 21px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+    box-shadow: 0px 6px 13px rgba(26, 35, 126, 0.35);
+}
+.hero button:hover {
+    transform: translateY(-4px);
+    background: linear-gradient(135deg, #16206a, #4858d9);
+    box-shadow: 0px 12px 22px rgba(26, 35, 126, 0.45);
+}
+.hero button:active {
+    transform: scale(0.96);
+}
+
+/* FOOTER — FIXED TO BOTTOM */
+footer {
+    background: #0d1c6e;
+    color: white;
+    padding: 18px 20px;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    font-size: 15px;
+    letter-spacing: 0.4px;
+    box-shadow: 0 -6px 15px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(6px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .navbar ul { display: none; } /* auto hide menu on small screens */
+    .hero h1 { font-size: 36px; }
+    .hero p { font-size: 18px; }
+    .hero { padding: 90px 20px; }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="/static/logo.png" alt="Logo">
+        </div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/generate">Generate Bill</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>Create GST Invoices in Seconds</h1>
+        <p>Fast • Secure • Professional PDF invoices for your business</p>
+        <button onclick="location.href='/generate'">Get Started → Generate Bill</button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2025 InvoiceGen — All Rights Reserved
+    </footer>
+
+</body>
+</html>
